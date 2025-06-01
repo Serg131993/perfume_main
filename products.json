@@ -8,7 +8,7 @@
     "volume": 1,
     "price": 1,
     "oldPrice": 5,
-    "image": "https://github.com/Serg131993/perfume_main/blob/680501881991ab4ce03b8480a79ece6b38b4efd1/images/1.png",
+    "image": "https://raw.githubusercontent.com/Serg131993/perfume_main/main/images/1.png",
     "popularity": 1,
     "new": 1
   },
@@ -19,9 +19,9 @@
     "category": "Женские",
     "type": "Парфюм",
     "volume": 30,
-    "price": "0,5",
+    "price": 0.5,
     "oldPrice": 0,
-    "image": "https://github.com/Serg131993/perfume_main/blob/680501881991ab4ce03b8480a79ece6b38b4efd1/images/2.png",
+    "image": "https://raw.githubusercontent.com/Serg131993/perfume_main/main/images/2.png",
     "popularity": 2,
     "new": 0
   },
@@ -47,7 +47,7 @@
     "volume": 100,
     "price": 5500,
     "oldPrice": 4000,
-    "image": "https://github.com/Serg131993/perfume_main/blob/680501881991ab4ce03b8480a79ece6b38b4efd1/images/3.png",
+    "image": "https://raw.githubusercontent.com/Serg131993/perfume_main/main/images/3.png",
     "popularity": 4,
     "new": 1
   },
