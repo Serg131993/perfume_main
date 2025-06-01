@@ -165,5 +165,186 @@
         .delay-400 { animation-delay: 0.4s; }
     </style>
 
+    <script>
+        let products = []; // Объявляем products как пустой массив
+        
+        // Функция для загрузки данных из products.json
+        async function loadProducts() {
+            try {
+                const response = await fetch('products.json'); // Загружаем products.json
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                products = await response.json(); // Присваиваем загруженные данные массиву products
+                console.log('Products loaded:', products); // Для отладки
+                applyFiltersAndSort(); // Вызываем рендеринг после загрузки данных
+            } catch (error) {
+                console.error('Error loading products:', error);
+                // Можно показать сообщение об ошибке пользователю
+                productListDiv.innerHTML = '<div class="col-span-full text-center py-12 text-red-500">Не удалось загрузить товары. Попробуйте позже.</div>';
+            }
+        }
+        
+        // Get DOM elements
+        const productListDiv = document.getElementById('product-list');
+        const categoryFilters = document.querySelectorAll('.category-filter');
+        const brandFilter = document.getElementById('brand-filter');
+        const volumeMinInput = document.getElementById('volume-min');
+        const volumeMaxInput = document.getElementById('volume-max');
+        const priceRangeInput = document.getElementById('price-range');
+        const currentPriceDisplay = document.getElementById('current-price-display');
+        const applyFiltersBtn = document.getElementById('apply-filters-btn');
+        const resetFiltersBtn = document.getElementById('reset-filters-btn');
+        const searchInput = document.getElementById('search-input');
+        const sortSelect = document.getElementById('sort-select');
+        const noProductsMessage = document.getElementById('no-products-message');
+    
+        // Initial price range display
+        if (priceRangeInput && currentPriceDisplay) {
+            currentPriceDisplay.textContent = `${priceRangeInput.value} ₽`;
+        }
+    
+        // Function to render products based on filtered and sorted data
+        function renderProducts(filteredProducts) {
+            productListDiv.innerHTML = ''; // Clear existing products
+            if (filteredProducts.length === 0) {
+                noProductsMessage.style.display = 'block'; // Show "no products" message
+                return;
+            } else {
+                noProductsMessage.style.display = 'none'; // Hide "no products" message
+            }
+    
+            filteredProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'bg-white rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105';
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg text-gray-900 mb-2">${product.name}</h3>
+                        <p class="text-gray-600 text-sm mb-3">Бренд: ${product.brand} | Объем: ${product.volume}мл | Категория: ${product.category}</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xl font-bold text-indigo-700">${product.price.toLocaleString('ru-RU')} ₽</span>
+                            ${product.oldPrice ? `<span class="text-sm text-gray-500 line-through">${product.oldPrice.toLocaleString('ru-RU')} ₽</span>` : ''}
+                        </div>
+                        <button class="w-full bg-indigo-500 text-white py-2 rounded-md hover:bg-indigo-600 transition-colors flex items-center justify-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                            В корзину
+                        </button>
+                    </div>
+                `;
+                productListDiv.appendChild(productCard);
+            });
+        }
+    
+        // Function to apply filters and sorting
+        function applyFiltersAndSort() {
+            let filtered = [...products]; // Start with a copy of all products
+    
+            // 1. Filter by Category
+            const selectedCategories = Array.from(categoryFilters)
+                                            .filter(checkbox => checkbox.checked)
+                                            .map(checkbox => checkbox.value);
+            if (selectedCategories.length > 0) {
+                filtered = filtered.filter(product => selectedCategories.includes(product.category));
+            }
+    
+            // 2. Filter by Brand
+            const selectedBrand = brandFilter.value;
+            if (selectedBrand) {
+                filtered = filtered.filter(product => product.brand === selectedBrand);
+            }
+    
+            // 3. Filter by Volume
+            const minVolume = parseInt(volumeMinInput.value);
+            const maxVolume = parseInt(volumeMaxInput.value);
+            if (!isNaN(minVolume)) {
+                filtered = filtered.filter(product => product.volume >= minVolume);
+            }
+            if (!isNaN(maxVolume)) {
+                filtered = filtered.filter(product => product.volume <= maxVolume);
+            }
+    
+            // 4. Filter by Price
+            const maxPrice = parseInt(priceRangeInput.value);
+            filtered = filtered.filter(product => product.price <= maxPrice);
+    
+            // 5. Filter by Search Input
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            if (searchTerm) {
+                filtered = filtered.filter(product =>
+                    product.name.toLowerCase().includes(searchTerm) ||
+                    product.brand.toLowerCase().includes(searchTerm)
+                );
+            }
+    
+            // 6. Sort
+            const sortBy = sortSelect.value;
+            switch (sortBy) {
+                case 'popularity':
+                    filtered.sort((a, b) => b.popularity - a.popularity);
+                    break;
+                case 'price-asc':
+                    filtered.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-desc':
+                    filtered.sort((a, b) => b.price - a.price);
+                    break;
+                case 'newest':
+                    // Assuming 'new' property indicates newest, true comes first
+                    filtered.sort((a, b) => (b.new === a.new) ? 0 : b.new ? 1 : -1);
+                    break;
+                default:
+                    // Default to popularity or original order
+                    filtered.sort((a, b) => b.popularity - a.popularity);
+                    break;
+            }
+    
+            renderProducts(filtered);
+        }
+    
+        // Event Listeners
+        // Update price display on range input
+        priceRangeInput.addEventListener('input', (event) => {
+            currentPriceDisplay.textContent = `${event.target.value} ₽`;
+        });
+    
+        // Apply filters on button click
+        applyFiltersBtn.addEventListener('click', applyFiltersAndSort);
+    
+        // Reset filters on button click
+        resetFiltersBtn.addEventListener('click', () => {
+            // Reset category checkboxes
+            categoryFilters.forEach(checkbox => checkbox.checked = false);
+            // Reset brand select
+            brandFilter.value = '';
+            // Reset volume inputs
+            volumeMinInput.value = '';
+            volumeMaxInput.value = '';
+            // Reset price range and display
+            priceRangeInput.value = priceRangeInput.max; // Set to max value
+            currentPriceDisplay.textContent = `${priceRangeInput.max} ₽`;
+            // Reset search input
+            searchInput.value = '';
+            // Reset sort select
+            sortSelect.value = 'popularity';
+    
+            applyFiltersAndSort(); // Re-render all products
+        });
+    
+        // Apply filters on search input change (with a small delay for better UX)
+        let searchTimeout;
+        searchInput.addEventListener('input', () => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(applyFiltersAndSort, 300); // Apply after 300ms of no typing
+        });
+    
+        // Apply filters on sort select change
+        sortSelect.addEventListener('change', applyFiltersAndSort);
+    
+        // Initial render of all products when the page loads
+        document.addEventListener('DOMContentLoaded', loadProducts); // Запускаем загрузку продуктов при загрузке страницы
+    
+    </script>
+
 </body>
 </html>
