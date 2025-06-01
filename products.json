@@ -1,0 +1,62 @@
+[
+  {
+    "Id": 1,
+    "name": "test1",
+    "brand": "Dior",
+    "category": "Мужские",
+    "type": "Туалетная вода",
+    "volume": 1,
+    "price": 1,
+    "oldPrice": 5,
+    "popularity": 1,
+    "new": 1
+  },
+  {
+    "Id": 2,
+    "name": "test2",
+    "brand": "Dior",
+    "category": "Женские",
+    "type": "Парфюм",
+    "volume": 30,
+    "price": "0,5",
+    "oldPrice": 0,
+    "popularity": 2,
+    "new": 0
+  },
+  {
+    "Id": 3,
+    "name": "test3",
+    "brand": "YSL",
+    "category": "Женские",
+    "type": "Парфюмированная вода",
+    "volume": 50,
+    "price": 999,
+    "oldPrice": 888,
+    "popularity": 3,
+    "new": 1
+  },
+  {
+    "Id": 4,
+    "name": "test4",
+    "brand": "Versace",
+    "category": "Мужские",
+    "type": "ХЗ",
+    "volume": 100,
+    "price": 5500,
+    "oldPrice": 4000,
+    "popularity": 4,
+    "new": 1
+  },
+  {
+    "Id": 5,
+    "name": "test5",
+    "brand": "Byredo",
+    "category": "Женские",
+    "type": "что-то",
+    "volume": 999,
+    "price": 99999,
+    "oldPrice": 120000,
+    "popularity": 5,
+    "new": 0
+  }
+]
