@@ -34,7 +34,7 @@
     "volume": 50,
     "price": 999,
     "oldPrice": 888,
-    "image": "https://github.com/Serg131993/perfume_main/blob/680501881991ab4ce03b8480a79ece6b38b4efd1/images/2.png",
+    "image": "https://raw.githubusercontent.com/Serg131993/perfume_main/main/images/5.png",
     "popularity": 3,
     "new": 1
   },
@@ -60,7 +60,7 @@
     "volume": 999,
     "price": 99999,
     "oldPrice": 120000,
-    "image": "https://github.com/Serg131993/perfume_main/blob/680501881991ab4ce03b8480a79ece6b38b4efd1/images/3.png",
+    "image": "https://raw.githubusercontent.com/Serg131993/perfume_main/main/images/7.png",
     "popularity": 5,
     "new": 0
   }
