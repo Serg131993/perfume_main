@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ParfumLux - Главная</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        /* Пользовательские стили, если Tailwind не покрывает */
+        .hero-section {
+            background-image: url('https://placehold.co/1920x1080/F0F8FF/000000?text=Изображение+духов'); /* Замените на реальное изображение */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4); /* Затемнение для читаемости текста */
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <header class="bg-white shadow-md py-4 px-6 md:px-12 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-indigo-600 hover:text-indigo-800 transition-colors">
+                ParfumLux
+            </a>
+            <nav class="hidden md:flex space-x-6">
+                <a href="index.html" class="text-indigo-600 font-semibold">Главная</a>
+                <a href="catalog.html" class="text-gray-700 hover:text-indigo-600 transition-colors">Каталог</a>
+                <a href="#" class="text-gray-700 hover:text-indigo-600 transition-colors">Акции</a>
+                <a href="#" class="text-gray-700 hover:text-indigo-600 transition-colors">О нас</a>
+                <a href="#" class="text-gray-700 hover:text-indigo-600 transition-colors">Контакты</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <button class="text-gray-700 hover:text-indigo-600 focus:outline-none md:hidden">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+                <a href="#" class="text-gray-700 hover:text-indigo-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-section text-white py-20 md:py-32 flex items-center justify-center min-h-[60vh]">
+        <div class="container mx-auto text-center px-4">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-up">
+                Откройте Мир Изысканных Ароматов
+            </h1>
+            <p class="text-lg md:text-xl max-w-2xl mx-auto mb-10 opacity-0 animate-fade-in delay-200">
+                ParfumLux предлагает эксклюзивную коллекцию духов от ведущих мировых брендов. Найдите свой идеальный аромат.
+            </p>
+            <a href="catalog.html" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 animate-bounce-in delay-400">
+                Перейти в Каталог
+            </a>
+        </div>
+    </section>
+
+    <section class="container mx-auto px-4 py-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">Популярные категории</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white rounded-lg shadow-xl overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                <img src="https://placehold.co/400x250/FFC0CB/000000?text=Женские+Духи" alt="Женские Духи" class="w-full h-56 object-cover">
+                <div class="p-6 text-center">
+                    <h3 class="font-semibold text-xl text-gray-900 mb-3">Женские Духи</h3>
+                    <p class="text-gray-600 mb-4">Изысканные ароматы для прекрасных дам.</p>
+                    <a href="catalog.html?category=Женские" class="text-indigo-600 hover:text-indigo-800 font-semibold transition-colors">Посмотреть коллекцию &rarr;</a>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-xl overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                <img src="https://placehold.co/400x250/ADD8E6/000000?text=Мужские+Духи" alt="Мужские Духи" class="w-full h-56 object-cover">
+                <div class="p-6 text-center">
+                    <h3 class="font-semibold text-xl text-gray-900 mb-3">Мужские Духи</h3>
+                    <p class="text-gray-600 mb-4">Сильные и мужественные ароматы.</p>
+                    <a href="catalog.html?category=Мужские" class="text-indigo-600 hover:text-indigo-800 font-semibold transition-colors">Посмотреть коллекцию &rarr;</a>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-xl overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                <img src="https://placehold.co/400x250/D8BFD8/000000?text=Унисекс+Духи" alt="Унисекс Духи" class="w-full h-56 object-cover">
+                <div class="p-6 text-center">
+                    <h3 class="font-semibold text-xl text-gray-900 mb-3">Унисекс Духи</h3>
+                    <p class="text-gray-600 mb-4">Ароматы, подходящие для всех.</p>
+                    <a href="catalog.html?category=Унисекс" class="text-indigo-600 hover:text-indigo-800 font-semibold transition-colors">Посмотреть коллекцию &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-indigo-700 text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10">Почему выбирают ParfumLux?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-6 bg-indigo-800 rounded-lg shadow-lg">
+                    <svg class="w-16 h-16 mx-auto mb-4 text-indigo-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    <h3 class="font-semibold text-xl mb-2">Гарантия качества</h3>
+                    <p class="text-indigo-200">Только оригинальная продукция от проверенных поставщиков.</p>
+                </div>
+                <div class="p-6 bg-indigo-800 rounded-lg shadow-lg">
+                    <svg class="w-16 h-16 mx-auto mb-4 text-indigo-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2zM12 14c-1.657 0-3 .895-3 2v1h6v-1c0-1.105-1.343-2-3-2z"></path></svg>
+                    <h3 class="font-semibold text-xl mb-2">Широкий ассортимент</h3>
+                    <p class="text-indigo-200">Тысячи ароматов для любого вкуса и случая.</p>
+                </div>
+                <div class="p-6 bg-indigo-800 rounded-lg shadow-lg">
+                    <svg class="w-16 h-16 mx-auto mb-4 text-indigo-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    <h3 class="font-semibold text-xl mb-2">Быстрая доставка</h3>
+                    <p class="text-indigo-200">Доставим ваш заказ в кратчайшие сроки.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 ParfumLux. Все права защищены.</p>
+            <div class="flex justify-center space-x-6 mt-4">
+                <a href="#" class="text-gray-400 hover:text-white">Политика конфиденциальности</a>
+                <a href="#" class="text-gray-400 hover:text-white">Условия использования</a>
+                <a href="#" class="text-gray-400 hover:text-white">Возврат товара</a>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounceIn {
+            0%, 20%, 40%, 60%, 80%, 100% {
+                transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            }
+            0% { opacity: 0; transform: scale3d(.3, .3, .3); }
+            20% { transform: scale3d(1.1, 1.1, 1.1); }
+            40% { transform: scale3d(.9, .9, .9); }
+            60% { opacity: 1; transform: scale3d(1.03, 1.03, 1.03); }
+            80% { transform: scale3d(.97, .97, .97); }
+            100% { opacity: 1; transform: scale3d(1, 1, 1); }
+        }
+
+        .animate-fade-in { animation: fadeIn 1s ease-out forwards; }
+        .animate-fade-in-up { animation: fadeInUp 1s ease-out forwards; }
+        .animate-bounce-in { animation: bounceIn 1s ease-out forwards; }
+
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-400 { animation-delay: 0.4s; }
+    </style>
+
+</body>
+</html>
